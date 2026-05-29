@@ -113,6 +113,28 @@ window.addEventListener("mouseup", event => {
 	mouseDown = false;
 });
 
+// New events for touchscreen
+canvas.addEventListener("touchstart", event => {
+  event.preventDefault(); // stop scrolling
+  mouseDown = true;
+  mousePosX = event.touches[0].clientX - canvas.clientLeft;
+  mousePosY = event.touches[0].clientY - canvas.clientTop;
+  sidebarViewable = false;
+  document.getElementById("sidebar").style.left = "-300px";
+
+});
+
+window.addEventListener("touchmove", event => {
+  event.preventDefault();
+  mousePosX = event.touches[0].clientX - canvas.clientLeft;
+  mousePosY = event.touches[0].clientY - canvas.clientTop;
+});
+
+window.addEventListener("touchend", event => {
+  event.preventDefault();
+  mouseDown = false;
+});
+
 window.addEventListener("resize", resizeCanvas);
 function resizeCanvas() {
 	canvas.height = document.documentElement.clientHeight;
