@@ -17,6 +17,7 @@ var c = canvas.getContext('2d');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+canvas.style.touchAction = "none"; // stop scrolling on mobile when touching canvas
 
 
 window.onload = function() {
@@ -96,7 +97,7 @@ mouseRadiusSlider.onchange = function() {
 }
 
 // EVENT LISTENERS
-canvas.addEventListener("mousedown", event => {
+canvas.addEventListener("pointerdown", event => {
 	mouseDown = true;
 	mousePosX = event.clientX - canvas.clientLeft;
 	mousePosY = event.clientY - canvas.clientTop;
@@ -104,35 +105,13 @@ canvas.addEventListener("mousedown", event => {
   document.getElementById("sidebar").style.left = "-300px";
 });
 
-window.addEventListener("mousemove", event => {
+window.addEventListener("pointermove", event => {
 	mousePosX = event.clientX - canvas.clientLeft;
 	mousePosY = event.clientY - canvas.clientTop;
 });
 
-window.addEventListener("mouseup", event => {
+window.addEventListener("pointerup", event => {
 	mouseDown = false;
-});
-
-// New events for touchscreen
-canvas.addEventListener("touchstart", event => {
-  event.preventDefault(); // stop scrolling
-  mouseDown = true;
-  mousePosX = event.touches[0].clientX - canvas.clientLeft;
-  mousePosY = event.touches[0].clientY - canvas.clientTop;
-  sidebarViewable = false;
-  document.getElementById("sidebar").style.left = "-300px";
-
-});
-
-window.addEventListener("touchmove", event => {
-  event.preventDefault();
-  mousePosX = event.touches[0].clientX - canvas.clientLeft;
-  mousePosY = event.touches[0].clientY - canvas.clientTop;
-});
-
-window.addEventListener("touchend", event => {
-  event.preventDefault();
-  mouseDown = false;
 });
 
 window.addEventListener("resize", resizeCanvas);
