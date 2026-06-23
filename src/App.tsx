@@ -1,19 +1,18 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Section1 from './components/sections/Section1'
-import Section2 from './components/sections/Section2'
-import Section3 from './components/sections/Section3'
 import Header from './components/Header/Header'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header/>
-      <div className="my-0 mx-auto max-w-7xl">
-        <Section1 />
-        <Section2 />
-        <Section3 />
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
